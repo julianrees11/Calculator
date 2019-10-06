@@ -6,17 +6,21 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
-import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
-    public TextView answers = findViewById(R.id.answerText);
+    private TextView display;
+    private int num1 = -1;
+    private String equation = "";
+    private int num2 = 0;
+    private int answer = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        Button button0 = findViewById(R.id.btn0);
         Button button1 = findViewById(R.id.btn1);
         Button button2 = findViewById(R.id.btn2);
         Button button3 = findViewById(R.id.btn3);
@@ -31,7 +35,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         Button buttonMultiply = findViewById(R.id.btnx);
         Button buttonDivide = findViewById(R.id.btnDivide);
         Button equals = findViewById(R.id.btnEquals);
+        display = findViewById(R.id.answerText);
+        Button clear = findViewById(R.id.btnClear);
 
+        button0.setOnClickListener(this);
         button1.setOnClickListener(this);
         button2.setOnClickListener(this);
         button3.setOnClickListener(this);
@@ -47,133 +54,152 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         buttonPlus.setOnClickListener(this);
         buttonPlus.setOnClickListener(this);
         equals.setOnClickListener(this);
+        clear.setOnClickListener(this);
 
     }
 
     @Override
     public void onClick(View v) {
-        int num1 = -1;
-        String equation = "";
-        int num2 = 0;
-        double answer = 0;
-        boolean whilel = true;
-
-        while(whilel){
         switch (v.getId()) {
+            case R.id.btn0:
+                if (equation.equals("")){
+                    num1 = 0;
+                    display.append(String.valueOf(num1));
+                }else{
+                    num2 = 0;
+                    display.append(String.valueOf(num2));
+                }
+                break;
+
             case R.id.btn1:
-                Toast.makeText(this, "1", Toast.LENGTH_SHORT).show();
-                if (num1 > -1) {
-                    num2 = 1;
-                } else {
+                if (equation.equals("")) {
                     num1 = 1;
+                    display.append(String.valueOf(num1));
+                } else {
+                    num2 = 1;
+                    display.append(String.valueOf(num2));
                 }
                 break;
 
             case R.id.btn2:
-                Toast.makeText(this, "2", Toast.LENGTH_SHORT).show();
-                if (num1 > -1) {
-                    num2 = 2;
-                } else {
+                if (equation.equals("")) {
                     num1 = 2;
+                    display.append(String.valueOf(num1));
+                } else {
+                    num2 = 2;
+                    display.append(String.valueOf(num2));
                 }
                 break;
 
             case R.id.btn3:
-                Toast.makeText(this, "3", Toast.LENGTH_SHORT).show();
-                if (num1 > -1) {
-                    num2 = 3;
-                } else {
+                if (equation.equals("")) {
                     num1 = 3;
+                    display.append(String.valueOf(num1));
+                } else {
+                    num2 = 3;
+                    display.append(String.valueOf(num2));
                 }
                 break;
 
             case R.id.btn4:
-                Toast.makeText(this, "4", Toast.LENGTH_SHORT).show();
-                if (num1 > -1) {
-                    num2 = 4;
-                } else {
+                if (equation.equals("")) {
                     num1 = 4;
+                    display.append(String.valueOf(num1));
+                } else {
+                    num2 = 4;
+                    display.append(String.valueOf(num2));
                 }
                 break;
             case R.id.btn5:
-                Toast.makeText(this, "5", Toast.LENGTH_SHORT).show();
-                if (num1 > -1) {
-                    num2 = 5;
-                } else {
+                if (equation.equals("")) {
                     num1 = 5;
+                    display.append(String.valueOf(num1));
+                } else {
+                    num2 = 5;
+                    display.append(String.valueOf(num1));
                 }
                 break;
 
             case R.id.btn6:
-                Toast.makeText(this, "6", Toast.LENGTH_SHORT).show();
-                if (num1 > -1) {
-                    num2 = 6;
-                } else {
+                if (equation.equals("")) {
                     num1 = 6;
+                    display.append(String.valueOf(num1));
+                } else {
+                    num2 = 6;
+                    display.append(String.valueOf(num2));
                 }
                 break;
 
             case R.id.btn7:
-                Toast.makeText(this, "7", Toast.LENGTH_SHORT).show();
-                if (num1 > -1) {
-                    num2 = 7;
-                } else {
+                if (equation.equals("")) {
                     num1 = 7;
+                    display.append(String.valueOf(num1));
+                } else {
+                    num2 = 7;
+                    display.append(String.valueOf(num2));
                 }
                 break;
 
             case R.id.btn8:
-                Toast.makeText(this, "8", Toast.LENGTH_SHORT).show();
-                if (num1 > -1) {
-                    num2 = 8;
-                } else {
+                if (equation.equals("")) {
                     num1 = 8;
+                    display.append(String.valueOf(num1));
+                } else {
+                    num2 = 8;
+                    display.append(String.valueOf(num2));
                 }
                 break;
 
             case R.id.btn9:
-                Toast.makeText(this, "9", Toast.LENGTH_SHORT).show();
-                if (num1 > -1) {
-                    num2 = 9;
-                } else {
+                if (equation.equals("")) {
                     num1 = 9;
+                    display.append(String.valueOf(num1));
+                } else {
+                    num2 = 9;
+                    display.append(String.valueOf(num2));
                 }
                 break;
 
             case R.id.btnDivide:
-                Toast.makeText(this, "/", Toast.LENGTH_SHORT).show();
                 equation = "/";
+                display.append(equation);
                 break;
 
             case R.id.btnEquals:
-                Toast.makeText(this, "=", Toast.LENGTH_SHORT).show();
+                display.append("=");
                 if (equation.equalsIgnoreCase("/")) {
                     answer = num1 / num2;
                 } else if (equation.equalsIgnoreCase("+")) {
-                    answer = num1 + num1;
+                    answer = num1 + num2;
                 } else if (equation.equalsIgnoreCase("-")) {
                     answer = num1 - num2;
                 } else if (equation.equalsIgnoreCase("X")) {
                     answer = num1 * num2;
                 }
-                answers.setText((int) answer);
+                display.append(String.valueOf(answer));
+                num1 = -1;
+                num2 = 0;
                 break;
 
             case R.id.btnMinus:
-                Toast.makeText(this, "-", Toast.LENGTH_SHORT).show();
                 equation = "-";
+                display.append(equation);
                 break;
 
             case R.id.btnPlus:
-                Toast.makeText(this, "+", Toast.LENGTH_SHORT).show();
                 equation = "+";
+                display.append(equation);
                 break;
 
             case R.id.btnx:
-                Toast.makeText(this, "X", Toast.LENGTH_SHORT).show();
                 equation = "X";
+                display.append(equation);
                 break;
-            }
+
+            case R.id.btnClear:
+                display.setText("");
+                equation = "";
+                break;
         }
     }
 }
