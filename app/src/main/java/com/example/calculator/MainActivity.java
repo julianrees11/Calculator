@@ -7,6 +7,8 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
+import java.lang.reflect.Array;
+
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
     private TextView display;
@@ -14,6 +16,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private String equation = "";
     private int num2 = 0;
     private int answer = 0;
+    private String num1S = "";
+    private String num2S = "";
+    private CharSequence dis;
+    private CharSequence dis2;
+    private String str2 = "";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -62,111 +69,72 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.btn0:
-                if (equation.equals("")){
-                    num1 = 0;
-                    display.append(String.valueOf(num1));
-                }else{
-                    num2 = 0;
-                    display.append(String.valueOf(num2));
-                }
+                display.append("0");
                 break;
 
             case R.id.btn1:
-                if (equation.equals("")) {
-                    num1 = 1;
-                    display.append(String.valueOf(num1));
-                } else {
-                    num2 = 1;
-                    display.append(String.valueOf(num2));
-                }
+                display.append("1");
                 break;
 
             case R.id.btn2:
-                if (equation.equals("")) {
-                    num1 = 2;
-                    display.append(String.valueOf(num1));
-                } else {
-                    num2 = 2;
-                    display.append(String.valueOf(num2));
-                }
+                display.append("2");
                 break;
 
             case R.id.btn3:
-                if (equation.equals("")) {
-                    num1 = 3;
-                    display.append(String.valueOf(num1));
-                } else {
-                    num2 = 3;
-                    display.append(String.valueOf(num2));
-                }
+                display.append("3");
                 break;
 
             case R.id.btn4:
-                if (equation.equals("")) {
-                    num1 = 4;
-                    display.append(String.valueOf(num1));
-                } else {
-                    num2 = 4;
-                    display.append(String.valueOf(num2));
-                }
+                display.append("4");
                 break;
             case R.id.btn5:
-                if (equation.equals("")) {
-                    num1 = 5;
-                    display.append(String.valueOf(num1));
-                } else {
-                    num2 = 5;
-                    display.append(String.valueOf(num1));
-                }
+                display.append("5");
                 break;
 
             case R.id.btn6:
-                if (equation.equals("")) {
-                    num1 = 6;
-                    display.append(String.valueOf(num1));
-                } else {
-                    num2 = 6;
-                    display.append(String.valueOf(num2));
-                }
+                display.append("6");
                 break;
 
             case R.id.btn7:
-                if (equation.equals("")) {
-                    num1 = 7;
-                    display.append(String.valueOf(num1));
-                } else {
-                    num2 = 7;
-                    display.append(String.valueOf(num2));
-                }
+                display.append("7");
                 break;
 
             case R.id.btn8:
-                if (equation.equals("")) {
-                    num1 = 8;
-                    display.append(String.valueOf(num1));
-                } else {
-                    num2 = 8;
-                    display.append(String.valueOf(num2));
-                }
+                display.append("8");
                 break;
 
             case R.id.btn9:
-                if (equation.equals("")) {
-                    num1 = 9;
-                    display.append(String.valueOf(num1));
-                } else {
-                    num2 = 9;
-                    display.append(String.valueOf(num2));
-                }
+                display.append("9");
                 break;
 
             case R.id.btnDivide:
+                dis2 = display.getText();
+                num1S = str2.valueOf(dis2);
                 equation = "/";
                 display.append(equation);
                 break;
 
             case R.id.btnEquals:
+                dis = display.getText();
+                String str = dis.toString();                                 //012           01234                012
+                int index = str.indexOf(equation);//=2                      // 1+1           10+10                9+9
+
+                for (;dis.length() > index;){
+                    int i;
+                    i = dis.length() - index + 1;
+                    System.out.println(i);
+                }
+
+
+
+
+
+
+
+                num1 = Integer.valueOf(num1S);
+                num2 = Integer.valueOf(num2S);
                 display.append("=");
+                System.out.println(num1 + " " + num2);
                 if (equation.equalsIgnoreCase("/")) {
                     answer = num1 / num2;
                 } else if (equation.equalsIgnoreCase("+")) {
@@ -177,21 +145,27 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     answer = num1 * num2;
                 }
                 display.append(String.valueOf(answer));
-                num1 = -1;
+                num1 = 0;
                 num2 = 0;
                 break;
 
             case R.id.btnMinus:
+                dis2 = display.getText();
+                num1S = str2.valueOf(dis2);
                 equation = "-";
                 display.append(equation);
                 break;
 
             case R.id.btnPlus:
+                dis2 = display.getText();
+                num1S = str2.valueOf(dis2);
                 equation = "+";
                 display.append(equation);
                 break;
 
             case R.id.btnx:
+                dis2 = display.getText();
+                num1S = str2.valueOf(dis2);
                 equation = "X";
                 display.append(equation);
                 break;
